@@ -238,8 +238,31 @@ end
 -- intersect?
 -- join
 -- keep_if
+
 -- max
+-- TODO comparator
+function seq.max(t, comparator)
+    local best = t[1]
+    for i = 1, #t do
+        if comparator(best, t[i]) then
+            best = t[i]
+        end
+    end
+    return best
+end
+
+-- max-by
+function seq.max_by(t, transformer)
+    local best = t[1]
+    for i = 1, #t do
+        if transformer(best) < transformer(t[i]) then
+            best = t[i]
+        end
+    end
+    return best
+end
 -- min
+
 -- minmax
 -- product
 -- shift / shift_while
